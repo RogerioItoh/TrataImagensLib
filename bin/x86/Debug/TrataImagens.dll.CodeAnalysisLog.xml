@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\visual studio\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\TrataImagens.dll">
+   <Modules>
+    <Module Name="trataimagens.dll">
+     <Namespaces>
+      <Namespace Name="Classes">
+       <Types>
+        <Type Name="FunctionSql" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#AbreResult(System.String,Oracle.ManagedDataAccess.Client.OracleConnection,System.Boolean)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib\Classes" File="FunctionSql.cs" Line="148">A cadeia de caracteres de consulta passada para 'OracleCommand.CommandText.set(string)' em 'FunctionSql.AbreResult(string, OracleConnection, bool)' pode conter as seguintes variáveis 'strSql'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#AbreResultAdapter(System.String,Oracle.ManagedDataAccess.Client.OracleConnection,System.Boolean)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib\Classes" File="FunctionSql.cs" Line="174">A cadeia de caracteres de consulta passada para 'OracleCommand.OracleCommand(string, OracleConnection)' em 'FunctionSql.AbreResultAdapter(string, OracleConnection, bool)' pode conter as seguintes variáveis 'strSql'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExecutaCount(System.String,Oracle.ManagedDataAccess.Client.OracleConnection)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib\Classes" File="FunctionSql.cs" Line="201">A cadeia de caracteres de consulta passada para 'OracleCommand.CommandText.set(string)' em 'FunctionSql.ExecutaCount(string, OracleConnection)' pode conter as seguintes variáveis 'strSqlCount'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Imagens" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Le_Arquivo_Imagem(System.String[])" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib\Classes" File="Imagens.cs" Line="274">O objeto 'fs' pode ser descartado mais de uma vez no método 'Imagens.Le_Arquivo_Imagem(string[])'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 274, 283</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IniFile" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Como esse é um método P/Invoke, 'IniFile.GetPrivateProfileString(string, string, string, StringBuilder, int, string)' deve ser definido em uma classe chamada NativeMethods, SafeNativeMethods ou UnsafeNativeMethods.</Issue>
+            </Message>
+            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'section' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'key' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="2" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'def' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="3" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'retVal' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="5" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'filePath' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#WritePrivateProfileString(System.String,System.String,System.String,System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Como esse é um método P/Invoke, 'IniFile.WritePrivateProfileString(string, string, string, string)' deve ser definido em uma classe chamada NativeMethods, SafeNativeMethods ou UnsafeNativeMethods.</Issue>
+            </Message>
+            <Message Id="return" TypeName="PInvokeDeclarationsShouldBePortable" Category="Microsoft.Portability" CheckId="CA1901" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="Return" Certainty="95" Level="Error">Conforme declarado em seu código, o tipo de retorno de P/Invoke 'IniFile.WritePrivateProfileString(string, string, string, string)' terá 8 bytes nas plataformas 32 bits. Isso não está correto, já que a declaração nativa real desta API indica que ele deve ter 4 bytes nas plataformas 32 bits. Consulte a documentação do SDK da Plataforma MSDN para obter ajuda para determinar que tipo de dados deve ser usado em vez de 'long'.</Issue>
+             <Issue Name="Return" Certainty="95" Level="Error">Conforme declarado em seu código, o tipo de retorno de P/Invoke 'IniFile.WritePrivateProfileString(string, string, string, string)' terá 8 bytes nas plataformas 64 bits. Isso não está correto, já que a declaração nativa real desta API indica que ele deve ter 4 bytes nas plataformas 64 bits. Consulte a documentação do SDK da Plataforma MSDN para obter ajuda para determinar que tipo de dados deve ser usado em vez de 'long'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'section' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'key' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="2" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'val' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="3" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="ParameterImplicitAnsi" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'filePath' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ManipulaErro" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#MsgBox(System.Int32,System.String,System.String,System.UInt32)" Kind="Method" Static="True" Accessibility="Assembly" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalWarning">Como esse é um método P/Invoke, 'ManipulaErro.MsgBox(int, string, string, uint)' deve ser definido em uma classe chamada NativeMethods, SafeNativeMethods ou UnsafeNativeMethods.</Issue>
+            </Message>
+            <Message Id="1" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="Parameter" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'lpText' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+            <Message Id="2" TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="NonBreaking">
+             <Issue Name="Parameter" Certainty="75" Level="Error">Para reduzir o risco de segurança, realize o marshaling do parâmetro 'lpCaption' como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="TrataImagensLib">
+       <Types>
+        <Type Name="TrataImagens" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CarregaParametrosGrava(System.Int32,System.String,System.Collections.Generic.List`1&lt;System.Byte[]&gt;,System.Collections.Generic.List`1&lt;System.Int32&gt;)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Name="WithNonLiterals" Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="2379">A cadeia de caracteres de consulta passada para 'OracleCommand.CommandText.set(string)' em 'TrataImagens.CarregaParametrosGrava(int, string, List&lt;byte[]&gt;, List&lt;int&gt;)' pode conter as seguintes variáveis 'strSql'. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ConectaParaLerOuGravarIdentificado(System.Double,System.String,Oracle.ManagedDataAccess.Client.OracleConnection&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="441">O objeto 'rdrBiografico' pode ser descartado mais de uma vez no método 'TrataImagens.ConectaParaLerOuGravarIdentificado(double, string, ref OracleConnection)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 441, 482</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="471">O objeto 'rdrBiografico' pode ser descartado mais de uma vez no método 'TrataImagens.ConectaParaLerOuGravarIdentificado(double, string, ref OracleConnection)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 471, 482</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ConsultaPedido(System.Double,Enum.TipoDeImagem,Oracle.ManagedDataAccess.Client.OracleConnection&amp;,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="193">O objeto 'rdrResult' pode ser descartado mais de uma vez no método 'TrataImagens.ConsultaPedido(double, TipoDeImagem, ref OracleConnection, bool)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 193, 296</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ConsultaSinalIdenticado01(System.Double,System.Int32,System.Int32,Oracle.ManagedDataAccess.Client.OracleConnection&amp;,System.Double,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1992">O objeto 'rdrIdentificado' pode ser descartado mais de uma vez no método 'TrataImagens.ConsultaSinalIdenticado01(double, int, int, ref OracleConnection, double, bool)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1992</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ConsultaSinalIdentificado(System.Double,System.Int32,System.Int32,System.Double&amp;,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1877">O objeto 'rdrIdentificado' pode ser descartado mais de uma vez no método 'TrataImagens.ConsultaSinalIdentificado(double, int, int, ref double, bool)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1877</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ConsultaSinalPac(System.Double,System.Int32,System.Int32,Oracle.ManagedDataAccess.Client.OracleConnection&amp;,System.Boolean)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="2062">O objeto 'rdrIdentificado' pode ser descartado mais de uma vez no método 'TrataImagens.ConsultaSinalPac(double, int, int, ref OracleConnection, bool)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 2062, 2070, 2083</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ExisteCorpoCivilIdentificacoes(System.Double)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1647">O objeto 'rdrResult' pode ser descartado mais de uma vez no método 'TrataImagens.ExisteCorpoCivilIdentificacoes(double)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1647</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GravaIdentificado(System.Double,System.String[]&amp;,Enum.TipoDeImagem,System.Double&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="628">O objeto 'RsIdentificados' pode ser descartado mais de uma vez no método 'TrataImagens.GravaIdentificado(double, ref string[], TipoDeImagem, ref double)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 628, 669, 708</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#GravaSinalIdentificado(System.Double,System.Int32,System.Int32,System.String,System.Double&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="2271">O objeto 'rdrIdentificado' pode ser descartado mais de uma vez no método 'TrataImagens.GravaSinalIdentificado(double, int, int, string, ref double)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 2271, 2282, 2298, 2320, 2321</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SaveResources(System.String,System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1771">O objeto 'bmp' pode ser descartado mais de uma vez no método 'TrataImagens.SaveResources(string, int)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1771</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1760">O objeto 'fileWsq' pode ser descartado mais de uma vez no método 'TrataImagens.SaveResources(string, int)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1760</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1771">O objeto 'myStream' pode ser descartado mais de uma vez no método 'TrataImagens.SaveResources(string, int)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1771, 1774, 1775</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1771">O objeto 'myStream' pode ser descartado mais de uma vez no método 'TrataImagens.SaveResources(string, int)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1771, 1774, 1775</Issue>
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="1771">O objeto 'myStream' pode ser descartado mais de uma vez no método 'TrataImagens.SaveResources(string, int)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 1771, 1774, 1775</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TabelaImagemCorpos(System.Double,System.Double,System.Boolean)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202" Status="Active" Created="2020-05-17 13:21:09Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="D:\Desenvolvimento\C Sharp\TrataImagensLib" File="TrataImagens.cs" Line="383">O objeto 'reader' pode ser descartado mais de uma vez no método 'TrataImagens.TabelaImagemCorpos(double, double, bool)'. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 383</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="MovePInvokesToNativeMethodsClass" Category="Microsoft.Design" CheckId="CA1060">
+   <Name>Mover P/Invokes para a classe NativeMethods</Name>
+   <Description>Esse tipo contém membros com o atributo DllImport. Os membros com o atributo DllImport devem estar contidos em classes chamadas NativeMethods, SafeNativeMethods ou UnsafeNativeMethods.</Description>
+   <Resolution Name="Default">Como esse é um método P/Invoke, {0} deve ser definido em uma classe chamada NativeMethods, SafeNativeMethods ou UnsafeNativeMethods.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182161.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="Não descartar objetos várias vezes" Category="Microsoft.Usage" CheckId="CA2202">
+   <Name>Não descartar objetos várias vezes</Name>
+   <Description>Um método Dispose implementado corretamente pode ser chamado várias vezes sem lançar uma exceção. No entanto, isso não é garantido e, para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.</Description>
+   <Resolution Name="Default">O objeto {0} pode ser descartado mais de uma vez no método {1}. Para evitar a geração de System.ObjectDisposedException, não chame Dispose mais de uma vez em um objeto.: Lines: 2271, 2282, 2298, 2320, 2321</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182334.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="PInvokeDeclarationsShouldBePortable" Category="Microsoft.Portability" CheckId="CA1901">
+   <Name>Declarações P/Invoke devem ser portáteis</Name>
+   <Description>.</Description>
+   <Resolution Name="Return">Conforme declarado em seu código, o tipo de retorno de P/Invoke {0} terá {1} bytes nas plataformas {2}. Isso não está correto, já que a declaração nativa real desta API indica que ele deve ter {3} bytes nas plataformas {2}. Consulte a documentação do SDK da Plataforma MSDN para obter ajuda para determinar que tipo de dados deve ser usado em vez de {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182284(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="portabilityrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="Revisar as consultas SQL em busca de vulnerabilidades de segurança" Category="Microsoft.Security" CheckId="CA2100">
+   <Name>Revisar as consultas SQL em busca de vulnerabilidades de segurança</Name>
+   <Description>Uma cadeia de caracteres de comando SQL compilada de uma entrada do usuário é vulnerável a ataques de injeção SQL. O Microsoft SQL Server e outros servidores de banco de dados oferecem suporte a procedimentos armazenados e consultas SQL parametrizadas, o que reduz o risco de ataques de injeção.</Description>
+   <Resolution Name="WithNonLiterals">A cadeia de caracteres de consulta passada para {0} em {1} pode conter as seguintes variáveis {2}. Se qualquer uma destas variáveis for proveniente da entrada do usuário, considere usar um procedimento armazenado ou uma consulta SQL parametrizada antes de compilar a consulta com concatenações de cadeias de caracteres.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182310.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyMarshalingForPInvokeStringArguments" Category="Microsoft.Globalization" CheckId="CA2101">
+   <Name>Especificar marshaling para argumentos de cadeias de caracteres P/Invoke</Name>
+   <Description>No marshaling de cadeias de caracteres como ANSI (ou como Auto no Win9x), alguns caracteres podem ser alterados. Se o mapeamento de melhor ajuste estiver ativado, as cadeias de caracteres que aparecerem diferentes em Unicode passarão por marshaling para as cadeias de caracteres ANSI idênticas, o que pode levar a decisões de segurança incorretas. Desativar o mapeamento de melhor ajuste reduz esse risco, pois todos os caracteres sem equivalentes são mapeados para "?". Além disso, observe que CharSet.Ansi é a configuração padrão para o marshaling de todas as cadeias de caracteres; o marshaling Unicode deve ser especificado explicitamente, como configuração CharSet de DllImport ou StructLayout, ou como atributo MarshalAs com UnmanagedType Unicode (ou dependente do sistema).</Description>
+   <Resolution Name="Parameter">Para reduzir o risco de segurança, realize o marshaling do parâmetro {0} como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Resolution>
+   <Resolution Name="ParameterImplicitAnsi">Para reduzir o risco de segurança, realize o marshaling do parâmetro {0} como Unicode, definindo DllImport.CharSet para CharSet.Unicode, ou realizando marshaling explicitamente do parâmetro como UnmanagedType.LPWStr. Se você precisar realizar marshaling dessa cadeia de caracteres como ANSI ou dependente do sistema, especifique MarshalAs explicitamente e defina BestFitMapping=false; para maior segurança, também defina ThrowOnUnmappableChar=true.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182319.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Categoria</String>
+  <String Key="Certainty">Certeza</String>
+  <String Key="CollapseAll">Recolher Tudo</String>
+  <String Key="CheckId">Verificar ID</String>
+  <String Key="Error">Erro</String>
+  <String Key="Errors">erro(s)</String>
+  <String Key="ExpandAll">Expandir Tudo</String>
+  <String Key="Help">Ajuda</String>
+  <String Key="Line">Linha</String>
+  <String Key="Messages">mensagem(ns)</String>
+  <String Key="LocationNotStoredInPdb">[Local não armazenado em Pdb]</String>
+  <String Key="Project">Projeto</String>
+  <String Key="Resolution">Resolução</String>
+  <String Key="Rule">Regra</String>
+  <String Key="RuleFile">Arquivo de Regra</String>
+  <String Key="RuleDescription">Descrição da Regra</String>
+  <String Key="Source">Origem</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Destino</String>
+  <String Key="Warning">Aviso</String>
+  <String Key="Warnings">aviso(s)</String>
+  <String Key="ReportTitle">Relatório de Análise de Código</String>
+ </Localized>
+</FxCopReport>

@@ -1,0 +1,9 @@
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\Debug\TrataImagensLib.csproj.CoreCompileInputs.cache
+D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\Debug\TrataImagens.dll.config
+D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\Debug\TrataImagens.dll
+D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\Debug\TrataImagens.pdb
+D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\Debug\TrataImagensLib.csproj.CopyComplete
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\Debug\TrataImagens.dll
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\Debug\TrataImagens.pdb
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\Debug\TrataImagensLib.csprojAssemblyReference.cache
