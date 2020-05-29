@@ -14,14 +14,11 @@ namespace Classes
         public bool MostraErro { get; set; }
 
 
-        public Conexao(string strDsn, string strUsuario, string strSenha)
+        public Conexao(string strConexao)
         {
             OraComando = new OracleCommand();
 
             OraConn = new OracleConnection();
-
-            string strConexao = "data source=" + strDsn + ";user ID=RJ" + double.Parse(strUsuario).ToString().PadLeft(10, '0') +
-                                ";password = " + strSenha + "; Pooling = false;";
             OraConn.ConnectionString = strConexao;
 
             //Indica se a Transaction foi feita para as operações de Insert / Update

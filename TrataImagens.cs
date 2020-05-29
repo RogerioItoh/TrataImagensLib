@@ -26,7 +26,7 @@ namespace TrataImagensLib
         private int iTotalImagens;
         public Conexao cnConexaoDll;
 
-        public TrataImagens( string Dsn , string Usuario , string Senha)
+        public TrataImagens( string strConexao )
         {
             IniFile ini = new IniFile("TrataImagens.ini");
             DiretorioImagens = ini.IniReadString("Arquivos de Imagens", "Diretorio", "Default");
@@ -47,11 +47,11 @@ namespace TrataImagensLib
             DeletaArquivo = false;
 
             /* Objeto de conexão para ser utilizada nas funções internas da dll (privadas) */
-            cnConexaoDll = new Conexao(Dsn, Usuario, Senha);            
+            cnConexaoDll = new Conexao(strConexao);            
             cnConexaoDll.MostraErro = HideMsgBox;
         }
 
-        public Enum.RetornoTrataImagem EliminaArquivo(string sArquivo)
+       /* public Enum.RetornoTrataImagem EliminaArquivo(string sArquivo)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace TrataImagensLib
             }
 
             return Enum.RetornoTrataImagem.RArquivoNaoApagado;
-        }
+        }*/
 
 
         public RetornoTrataImagem ConsultaPedido(double dblPedido, TipoDeImagem eTipoDeImagem, ref OracleConnection cnConexaoBiografica, bool blApenasConsulta = false)
@@ -625,7 +625,6 @@ namespace TrataImagensLib
                         if (dblTamanhoGravado < 1)
                         {
                             RsIdentificados.Close();
-                            RsIdentificados.Dispose();
                             return RetornoTrataImagem.RFalhaConexaoIdentificados;
                         }
 
@@ -719,7 +718,7 @@ namespace TrataImagensLib
             catch (Exception ex)
             {
                 ManipulaErro.MostraErro("GravaIdentificado(): ", ex.GetHashCode(), ex.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("GravaIdentificado : " + dblPedido.ToString() + " - " + ex.Message, ex.GetHashCode());
+                //ManipulaErro.GravaEventLog("GravaIdentificado : " + dblPedido.ToString() + " - " + ex.Message, ex.GetHashCode());
                 return RetornoTrataImagem.RFalhaGravacao;
             }
             return RetornoTrataImagem.RFalhaConexaoIdentificados;
@@ -1176,7 +1175,7 @@ namespace TrataImagensLib
             catch (Exception ex)
             {
                 ManipulaErro.MostraErro("GravaPedido(): ", ex.GetHashCode(), ex.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("GravaPedido : " + dblPedido + " - " + ex.Message, ex.GetHashCode());
+                //ManipulaErro.GravaEventLog("GravaPedido : " + dblPedido + " - " + ex.Message, ex.GetHashCode());
                 return RetornoTrataImagem.RFalhaGravacao;
             }
             return RetornoTrataImagem.RFalhaGravacao;
@@ -1488,7 +1487,7 @@ namespace TrataImagensLib
             {
 
                 ManipulaErro.MostraErro("ConsultaIdentificado(): ", ex.GetHashCode(), ex.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("ConsultaIdentificado(): : " + dblPedido.ToString() + " - " + ex.Message, ex.GetHashCode());
+                //ManipulaErro.GravaEventLog("ConsultaIdentificado(): : " + dblPedido.ToString() + " - " + ex.Message, ex.GetHashCode());
                 ResultadoConsultaIdentificado = RetornoTrataImagem.RFalhaConexaoIdentificados;
             }
             return ResultadoConsultaIdentificado;
@@ -1606,7 +1605,7 @@ namespace TrataImagensLib
             {
 
                 ManipulaErro.MostraErro("ConsultaIdentificado_01(): ", ex.GetHashCode(), ex.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("ConsultaIdentificado_01(): : " + dblPedido.ToString() + " - " + ex.Message, ex.GetHashCode());
+                //ManipulaErro.GravaEventLog("ConsultaIdentificado_01(): : " + dblPedido.ToString() + " - " + ex.Message, ex.GetHashCode());
                 ResultadoConsultaIdentificado_01 = RetornoTrataImagem.RFalhaConexaoIdentificados;
             }
             return ResultadoConsultaIdentificado_01;
@@ -1673,6 +1672,7 @@ namespace TrataImagensLib
             }
             catch (Exception ex)
             {
+                ManipulaErro.MostraErro("LogErroConsulta(): ", ex.GetHashCode(), ex.Message, HideMsgBox);
                 return false;
             }
 
@@ -1684,95 +1684,116 @@ namespace TrataImagensLib
             int iIni, iFim;
             string strTmp;
 
-            switch (tpImagem)
+            try
             {
-                case TipoDeImagem.Dedos:
-                    iIni = 1;
-                    iFim = 10;
-                    break;
-                case TipoDeImagem.Todas:
-                    iIni = 1;
-                    iFim = 12;
-                    break;
-                default:
-                    iIni = tpImagem.GetHashCode();
-                    iFim = tpImagem.GetHashCode();
-                    break;
+
+                switch (tpImagem)
+                {
+                    case TipoDeImagem.Dedos:
+                        iIni = 1;
+                        iFim = 10;
+                        break;
+                    case TipoDeImagem.Todas:
+                        iIni = 1;
+                        iFim = 12;
+                        break;
+                    default:
+                        iIni = tpImagem.GetHashCode();
+                        iFim = tpImagem.GetHashCode();
+                        break;
+                }
+
+                if (iIni < 0) iIni = 0;
+                if (iFim > 12) iFim = 12;
+
+                Imagens.LimpaArray();
+                for (int iContador = iIni; iContador <= iFim; iContador++)
+                {
+                    strTmp = DiretorioImagens + "0".PadLeft(12, '0');
+                    if (iContador < 11)
+                    {
+                        strTmp = strTmp + iContador.ToString().PadLeft(2, '0') + ".Wsq";
+                        SaveResources(strTmp, iContador);
+                    }
+                    else if (iContador.Equals(11))
+                    {
+                        strTmp = strTmp + iContador.ToString().PadLeft(2, '0') + ".Jpg";
+                        SaveResources(strTmp, iContador);
+                    }
+                    else if (iContador.Equals(12))
+                    {
+                        strTmp = strTmp + iContador.ToString().PadLeft(2, '0') + ".Jpg";
+                        SaveResources(strTmp, iContador);
+                    }
+                    Imagens.g_NomeDoArquivo[iContador - 1] = strTmp;
+                }
             }
-
-            if (iIni < 0) iIni = 0;
-            if (iFim > 12) iFim = 12;
-
-            Imagens.LimpaArray();
-            for (int iContador = iIni; iContador <= iFim; iContador++)
+            catch (Exception ex)
             {
-                strTmp = DiretorioImagens + "0".PadLeft(12, '0');
-                if (iContador < 11)
-                {
-                    strTmp = strTmp + iContador.ToString().PadLeft(2, '0') + ".Wsq";
-                    SaveResources(strTmp, iContador);
-                }
-                else if (iContador.Equals(11))
-                {
-                    strTmp = strTmp + iContador.ToString().PadLeft(2, '0') + ".Jpg";
-                    SaveResources(strTmp, iContador);
-                }
-                else if (iContador.Equals(12))
-                {
-                    strTmp = strTmp + iContador.ToString().PadLeft(2, '0') + ".Jpg";
-                    SaveResources(strTmp, iContador);
-                }
-                Imagens.g_NomeDoArquivo[iContador - 1] = strTmp;
+                ManipulaErro.MostraErro("SalvaImagensEmBranco(): ", ex.GetHashCode(), ex.Message, HideMsgBox); 
             }
 
         }
 
         private void SaveResources(string strArquivo, int iTipoImagem)
         {
-            /* Salva arquivo de Digital, Foto e Assinatura não disponivel*/
+            /* Salva arquivo de Digital, Foto e Assinatura não disponivel
+             Complemento da função SalvaImagensEmBranco
+             */
+
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream myStream = null;
             Bitmap bmp;
 
-            //Lê o arquivo de imagem
-            if (iTipoImagem < 11)
+            try
             {
-                myStream = myAssembly.GetManifestResourceStream("TrataImagensLib.Imagens.DigitalNaoDisponivel.wsq");
+
+                //Lê o arquivo de imagem
+                if (iTipoImagem < 11)
+                {
+                    myStream = myAssembly.GetManifestResourceStream("TrataImagensLib.Imagens.DigitalNaoDisponivel.wsq");
+                }
+                else if (iTipoImagem.Equals(11))
+                {
+                    myStream = myAssembly.GetManifestResourceStream("TrataImagensLib.Imagens.FotoNaoDisponivel.jpg");
+                }
+                else if (iTipoImagem.Equals(12))
+                {
+                    myStream = myAssembly.GetManifestResourceStream("TrataImagensLib.Imagens.AssinaturaNaoDisponivel.jpg");
+                }
+
+                if (iTipoImagem < 11)
+                {
+                    // Cria o arquivo de stream que vai receber o arquivvo wsq
+                    FileStream fileWsq = new FileStream(strArquivo, FileMode.Create, FileAccess.Write);
+                    // Copia o conteúdo do aruivo original para o novo arquivo
+                    myStream.CopyTo(fileWsq);
+
+                    fileWsq.Close();
+                    fileWsq.Dispose();
+                }
+                else
+                {
+                    /* Converte o arquivo de stream q está no formato de bytes
+                     * para imagem e salvar o arquivo*/
+                    bmp = new Bitmap(myStream);
+                    Image img = (Image)bmp;
+                    img.Save(strArquivo);
+
+                    bmp.Dispose();
+                    img.Dispose();
+                }
+
+                myStream.Close();
+                myStream.Dispose();
             }
-            else if (iTipoImagem.Equals(11))
+            catch (Exception ex)
             {
-                myStream = myAssembly.GetManifestResourceStream("TrataImagensLib.Imagens.FotoNaoDisponivel.jpg");
-            }
-            else if (iTipoImagem.Equals(12))
-            {
-                myStream = myAssembly.GetManifestResourceStream("TrataImagensLib.Imagens.AssinaturaNaoDisponivel.jpg");
+                ManipulaErro.MostraErro("SaveResources(): ", ex.GetHashCode(), ex.Message, HideMsgBox);
             }
 
-            if (iTipoImagem < 11)
-            {
-                // Cria o arquivo de stream que vai receber o arquivvo wsq
-                FileStream fileWsq = new FileStream(strArquivo, FileMode.Create, FileAccess.Write);
-                // Copia o conteúdo do aruivo original para o novo arquivo
-                myStream.CopyTo(fileWsq);
 
-                fileWsq.Close();
-                fileWsq.Dispose();
-            }
-            else
-            {
-                /* Converte o arquivo de stream q está no formato de bytes
-                 * para imagem e salvar o arquivo*/
-                bmp = new Bitmap(myStream);
-                Image img = (Image)bmp;
-                img.Save(strArquivo);
-
-                bmp.Dispose();
-                img.Dispose();
-            }
-
-            myStream.Close();
-            myStream.Dispose();
         }
 
 
@@ -1873,8 +1894,7 @@ namespace TrataImagensLib
                                 break;
                             }
                         }
-                        rdrIdentificado.Close();
-                        rdrIdentificado.Dispose();
+                        rdrIdentificado.Close();                        
                         return ConsultaSinalIdentificado;
                     }
                 }
@@ -1882,7 +1902,7 @@ namespace TrataImagensLib
             catch (Exception Err)
             {
                 ManipulaErro.MostraErro("ConsultaSinalIdentificado(): ", Err.GetHashCode(), Err.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("ConsultaSinalIdentificado() : " + Err.Message, Err.GetHashCode());
+                //ManipulaErro.GravaEventLog("ConsultaSinalIdentificado() : " + Err.Message, Err.GetHashCode());
             }
             return ConsultaSinalIdentificado;
         }
@@ -1983,7 +2003,6 @@ namespace TrataImagensLib
                                 NomeDoArquivo.Add(@strArquivo);
                                 TamanhoDoArquivo.Add(dblTamanhoGravado);
                                 IdCorpo = dblIdSinal;
-
                                 ConsultaSinalIdenticado01 = RetornoTrataImagem.Rok;
                                 break;
                             }
@@ -1997,7 +2016,7 @@ namespace TrataImagensLib
             catch (Exception Err)
             {
                 ManipulaErro.MostraErro("ConsultaSinalIdenticado01(): ", Err.GetHashCode(), Err.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("ConsultaSinalIdenticado01() : " + Err.Message, Err.GetHashCode());
+                //ManipulaErro.GravaEventLog("ConsultaSinalIdenticado01() : " + Err.Message, Err.GetHashCode());
             }
             return ConsultaSinalIdenticado01;
         }
@@ -2099,7 +2118,7 @@ namespace TrataImagensLib
             catch (Exception Err)
             {
                 ManipulaErro.MostraErro("ConsultaSinalPac(): ", Err.GetHashCode(), Err.Message, HideMsgBox);
-                ManipulaErro.GravaEventLog("ConsultaSinalPac() : " + Err.Message, Err.GetHashCode());
+                //ManipulaErro.GravaEventLog("ConsultaSinalPac() : " + Err.Message, Err.GetHashCode());
             }
             return ConsultaSinalPac;
         }
@@ -2202,10 +2221,10 @@ namespace TrataImagensLib
                 }
 
             }
-
             catch (Exception Err)
             {
-
+                ManipulaErro.MostraErro("GravaSinalPac: ", Err.GetHashCode(), Err.Message, HideMsgBox);
+                return RetornoTrataImagem.RFalhaConexaoIdentificados;
             }
             return GravaSinalPac;
         }

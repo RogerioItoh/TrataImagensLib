@@ -270,8 +270,6 @@ namespace Classes
                         lstTipoExtensao.Add(iTipoExtensao);
 
                         dblTamanhoArquivo += fs.Length;
-                        br.Close();
-                        fs.Close();
                     }
                     else
                     {
@@ -279,14 +277,16 @@ namespace Classes
                         dblTamanhoArquivo = 0;
                         lstImagemConvertida.Clear();
                         lstTipoExtensao.Clear();
-                        br.Dispose();
-                        fs.Dispose();
                         break;
                     }
+
+                    br.Close();
+                    fs.Close();
                 }
                 /* Retorna o tamanho total dos arquivos convertidos
                  * Uma lista como a conversão dos arquivos para Byte
                  * e lista com o tipo de Extensao */
+                
                 return (dblTamanhoArquivo, lstImagemConvertida, lstTipoExtensao);
             }
             catch (Exception ex)

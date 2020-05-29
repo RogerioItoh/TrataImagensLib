@@ -57,6 +57,7 @@
       <HintPath>packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AppSettings.cs" />
     <Compile Include="Classes\Conexao.cs" />
     <Compile Include="Classes\FunctionSql.cs" />
     <Compile Include="Classes\Imagens.cs" />
@@ -81,7 +83,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Imagens\DigitalNaoDisponivel.wsq" />
     <None Include="packages.config" />
   </ItemGroup>

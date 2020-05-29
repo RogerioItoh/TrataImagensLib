@@ -1,10 +1,9 @@
-D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\x86\Debug\TrataImagensLib.csproj.CoreCompileInputs.cache
 D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\TrataImagens.dll.config
 D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\TrataImagens.dll
 D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\TrataImagens.pdb
-D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\TrataImagens.dll.CodeAnalysisLog.xml
-D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\TrataImagens.dll.lastcodeanalysissucceeded
 D:\Desenvolvimento\C Sharp\TrataImagensLib\bin\x86\Debug\Oracle.ManagedDataAccess.dll
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\x86\Debug\TrataImagensLib.csprojAssemblyReference.cache
+D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\x86\Debug\TrataImagensLib.csproj.CoreCompileInputs.cache
 D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\x86\Debug\TrataImagensLib.csproj.CopyComplete
 D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\x86\Debug\TrataImagens.dll
 D:\Desenvolvimento\C Sharp\TrataImagensLib\obj\x86\Debug\TrataImagens.pdb
